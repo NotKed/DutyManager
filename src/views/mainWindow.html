@@ -12,7 +12,15 @@
     <center style="margin-top: 20%;">
         <h1>Duty Mananger</h1>
         <br>
-        <label class="form-switch"><input type="checkbox"><i></i></label>
+        <label class="form-switch"><input type="checkbox" onclick="buttonChange(this)"><i></i></label>
     </center>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        function buttonChange(cb) {
+            ipcRenderer.send('buttonChange', {value: cb.checked});
+        }
+    </script>
 </body>
 </html>

@@ -2,6 +2,16 @@ const config = require('../config.json');
 const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron');
 const url = require('url');
 const path = require('path');
+const SteamUser = require('steam-user');
+
+var steamUser = new SteamUser();
+steamUser.logOn({
+    "accountName": config.steamUsername,
+    "password": config.steamPassword
+});
+
+
+console.log(steamUser.steamID)
 
 let mainWindow;
 
@@ -27,4 +37,11 @@ app.on('ready', async () => {
     mainWindow.on('closed', () => {
         app.quit()
     });
+
+    ipcMain.on('buttonChange', (e, data) => {
+        if(data.value) { // set to 'on duty'
+        } else {
+
+        }
+    })
 })
